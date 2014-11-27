@@ -1,5 +1,0 @@
-<IfModule mod_rewrite.c>
-    # Asset cache busting (point all.0be71ff4479fb313544a58ef4f359e15.css to all.css)
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^(.+)\.([0-9a-z]{32})\.(js|css|png|jpg|gif|svg|ico)$ $1.$3 [L]
-</IfModule>
