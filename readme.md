@@ -17,6 +17,10 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.+)\.([0-9a-z]{32})\.(js|css|png|jpg|gif|svg|ico)$ $1.$3 [L]
 ```
 
+```
+<?php echo css(fingerprint('static/styles/all.css')) ?>
+```
+
 ## Author
 Iksi
 <http://www.iksi.cc>
