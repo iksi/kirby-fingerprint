@@ -13,8 +13,8 @@ function fingerprint($path)
     }
 
     $filename  = pathinfo($path, PATHINFO_FILENAME)
-               . '.' . md5_file($path) . '.'
-               . pathinfo($path, PATHINFO_EXTENSION);
+        . '.' . md5_file($path) . '.'
+        . pathinfo($path, PATHINFO_EXTENSION);
 
     $dirname = pathinfo($path, PATHINFO_DIRNAME);
 
