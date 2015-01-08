@@ -12,7 +12,7 @@ As the fingerprint on the file changes after the contents of the file have been 
 
 Use it as a standalone function or wrap it in a class. Be sure to add the following code to your `.htacces` file in order to point the fingerprinted asset to the right file:
 
-```htaccess
+```APACHECONF
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.+)\.([0-9a-z]{32})\.(js|css|png|jpg|gif|svg|ico)$ $1.$3 [L]
 ```
