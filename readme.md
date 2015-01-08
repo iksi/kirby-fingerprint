@@ -19,8 +19,8 @@ RewriteRule ^(.+)\.([0-9a-z]{32})\.(js|css|png|jpg|gif|svg|ico)$ $1.$3 [L]
 
 And then you can use it in PHP as follows:
 
-```
-<?php echo css(fingerprint('static/styles/all.css')) ?>
+```PHP
+echo css(fingerprint('static/styles/all.css'));
 ```
 
 ## Author
