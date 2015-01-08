@@ -7,8 +7,7 @@
  */
 function fingerprint($path)
 {
-    if ( ! file_exists($path))
-    {
+    if ( ! file_exists($path)) {
         return $path;
     }
 
@@ -18,8 +17,7 @@ function fingerprint($path)
 
     $dirname = pathinfo($path, PATHINFO_DIRNAME);
 
-    if ($dirname === '.')
-    {
+    if ($dirname === '.') {
         return $filename;
     }
 
