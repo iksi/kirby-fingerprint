@@ -24,5 +24,5 @@ echo css(fingerprint('static/styles/all.css'));
 ```
 
 ## Author
-Iksi
+Iksi  
 <http://www.iksi.cc>
