@@ -23,5 +23,5 @@ function fingerprint($path)
         return $filename;
     }
 
-    return $dirname.DIRECTORY_SEPARATOR.$filename;
+    return $dirname . DIRECTORY_SEPARATOR . $filename;
 }
