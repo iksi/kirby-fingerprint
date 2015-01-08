@@ -2,7 +2,7 @@
 
 ## What is it?
 
-The fingerprint function takes in a path like `static/styles/all.css` and adds a fingerprint based on the file contents so it becomes like `static/styles/all.312aae3b4ab1590afcc4e15cb3962759.css`.
+The fingerprint function takes a path like `static/styles/all.css` and adds a fingerprint based on the file contents so it becomes something like `static/styles/all.312aae3b4ab1590afcc4e15cb3962759.css`.
 
 ## Why use it?
 
