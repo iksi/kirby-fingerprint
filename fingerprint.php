@@ -1,6 +1,6 @@
 <?php
 /**
- * Fingerprint assets
+ * Fingerprint files
  *
  * @author Iksi <info@iksi.cc>
  * @version 1.0.0
