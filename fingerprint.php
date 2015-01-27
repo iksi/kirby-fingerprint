@@ -3,7 +3,7 @@
  * Fingerprint files
  *
  * @author Iksi <info@iksi.cc>
- * @version 1.0.0
+ * @version 1.1
  */
 function fingerprint($path)
 {
