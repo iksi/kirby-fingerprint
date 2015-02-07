@@ -10,7 +10,7 @@ As the fingerprint on the file changes after the contents of the file have been 
 
 ## How to use it?
 
-Use it as a standalone function or wrap it in a class. Be sure to add the contents of `htaccess.txt` to your `.htacces` file in order to point the fingerprinted asset to the right file.
+Make sure you add the contents of `htaccess.txt` to your `.htacces` file in order to point the fingerprinted asset to the right file.
 
 And then you can use it in PHP as follows:
 
