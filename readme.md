@@ -21,7 +21,7 @@ echo cssfingerprint('static/css/all.css'));
 echo jsfingerprint('static/js/all.js'));
 ```
 
-You can also use it with using Kirby’s `@auto`:
+You can also use it with using Kirby’s `@auto` for autoloading and fingerprinting template specific files:
 
 ```PHP
 echo cssfingerprint('@auto'));
