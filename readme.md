@@ -2,11 +2,11 @@
 
 ### Update
 
-Added `cssfingerprint` and `jsfingerprint` as replacement functions for Kirby’s built-in `css` and `js` functions so it’s possible to use `@auto` for autoloading and fingerprinting template specific files. You can still use the `fingerprint` function as it was but it won’t work with `@auto`.
+Added `cssfingerprint()` and `jsfingerprint()` as replacement functions for Kirby’s built-in `css` and `js` functions so it’s possible to use `@auto` for autoloading and fingerprinting template specific files. You can still use the `fingerprint` function as it was but it won’t work with `@auto`.
 
 ## What is it?
 
-The `cssfingerprint` and `jsfingerprint` functions add fingerprints to the filenames based on contents of the files.
+The `cssfingerprint()` and `jsfingerprint()` functions add fingerprints to the filenames based on contents of the files.
 
 ## Why use it?
 
