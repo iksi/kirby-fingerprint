@@ -15,7 +15,7 @@ function fingerprint($path)
         . '.' . $pathinfo['extension'];
 
     if ($pathinfo['dirname'] === '.') {
-        return $filename;
+        return $basename;
     }
 
     return $pathinfo['dirname'] . DS . $basename;
