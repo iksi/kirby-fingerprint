@@ -18,7 +18,7 @@ function fingerprint($path)
         return $basename;
     }
 
-    return $pathinfo['dirname'] . DS . $basename;
+    return $pathinfo['dirname'] . '/' . $basename;
 }
 
 function cssfingerprint($url, $media = null)
