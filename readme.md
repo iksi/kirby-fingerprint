@@ -14,7 +14,7 @@ As the fingerprint on the file changes after the contents of the file have been 
 
 ## How to use it?
 
-Put the `fingerprint` folder in `/site/plugins` and make sure you add the contents of the `.htaccess` to your `.htaccess` file in order to point the fingerprinted asset to the right file. Make sure you put the `.htaccess` rules  directly after `RewriteEngine on` before the other Kirby `.htaccess` rules. Then you can use it in PHP as follows:
+Put the `fingerprint` folder in `/site/plugins` and make sure you add the contents of the `.htaccess` to your `.htaccess` file in order to point the fingerprinted asset to the right file. Make sure you put the `.htaccess` rules  directly after the `RewriteBase` rule before the other Kirby `.htaccess` rules. Then you can use it in PHP as follows:
 
 ```PHP
 echo cssfingerprint('static/css/all.css'));
