@@ -1,12 +1,10 @@
 # Fingerprint
 
-### Update
-
-Added `cssfingerprint()` and `jsfingerprint()` as replacement functions for Kirby’s built-in `css` and `js` functions so it’s possible to use `@auto` for autoloading and fingerprinting template specific files. You can still use the `fingerprint` function as it was but it won’t work with `@auto`.
+The Fingerprint plugin now works with Kirby 2.1.0. and uses the new css and js handlers so you can use Kirby’s default `css()` and `js()` helper functions.
 
 ## What is it?
 
-The `cssfingerprint()` and `jsfingerprint()` functions add fingerprints to the filenames based on contents of the files.
+The Fingerprint plugin adds fingerprints to css and js filenames based on their contents.
 
 ## Why use it?
 
@@ -14,19 +12,32 @@ As the fingerprint on the file changes after the contents of the file have been 
 
 ## How to use it?
 
-Put the `fingerprint` folder in `/site/plugins` and make sure you add the contents of the `.htaccess` to your `.htaccess` file in order to point the fingerprinted asset to the right file. Make sure you put the `.htaccess` rules  directly after the `RewriteBase` rule before the other Kirby `.htaccess` rules. Then you can use it in PHP as follows:
+Put the `fingerprint` folder in `/site/plugins`. You can use the normal Kirby `css()` and `js()` helper functions.
 
-```PHP
-echo cssfingerprint('static/css/all.css'));
-echo jsfingerprint('static/js/all.js'));
+Add the following lines to your htaccess file:
+
+```
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)\.([0-9a-z]{32})\.(js|css)$ $1.$3 [L]
 ```
 
-You can also use it with using Kirby’s `@auto` for autoloading and fingerprinting template specific files:
+Or for Nginx you can add the following to your virtual host setup:
+
+```
+location /assets {
+    if (!-e $request_filename) {
+        rewrite ^/(.+)\.([0-9a-z]{32})\.(js|css)$ /$1.$3 break;
+    }
+}
+```
+
+Enable fingerprinting by adding the following to you `config.php` file:
 
 ```PHP
-echo cssfingerprint('@auto'));
-echo jsfingerprint('@auto'));
+c::set('fingerprint', true);
 ```
+
+You can also use Kirby’s `@auto` for autoloading and fingerprinting template specific assets.
 
 ### External urls
 

@@ -1,85 +1,67 @@
 <?php
+
 /**
- * Fingerprint files
+ * Fingerprint css and js assets
  *
+ * @version 1.3
  * @author Iksi <info@iksi.cc>
- * @version 1.2
  */
-function fingerprint($path)
-{
-    if ( ! file_exists($path) || count($pathinfo = pathinfo($path)) < 4) {
-        return $path;
+
+namespace iksi;
+
+if ( ! \c::get('fingerprint')) return;
+
+function fingerprint($url) {
+
+    $info = pathinfo($url);
+
+    if ( ! file_exists($url) or count($info) < 4) {
+        return $url;
     }
 
-    $basename = $pathinfo['filename'] . '.' . md5_file($path)
-        . '.' . $pathinfo['extension'];
+    $path = $info['filename'] . '.' . md5_file($url) . '.' . $info['extension'];
 
-    if ($pathinfo['dirname'] === '.') {
-        return $basename;
+    if ($info['dirname'] !== '.') {
+        $path = $info['dirname'] . '/' . $path;
     }
 
-    return $pathinfo['dirname'] . '/' . $basename;
+    return $path;
 }
 
-function cssfingerprint($url, $media = null)
-{
+$kirby      = \kirby::instance();
+$cssHandler = $kirby->option('css.handler');
+$jsHandler  = $kirby->option('js.handler');
+
+$kirby->options['css.handler'] = function($url, $media = null) use($cssHandler, $kirby) {
+
     if (is_array($url)) {
         $css = array();
-        foreach ($url as $u) {
-            $css[] = cssfingerprint($u);
-        }
+        foreach ($url as $u) $css[] = call($kirby->option('css.handler'), $u);
         return implode(PHP_EOL, $css) . PHP_EOL;
     }
 
     // auto template css files
     if ($url == '@auto') {
-        $kirby = kirby::instance();
-        $file  = $kirby->site()->page()->template() . '.css';
-        $root  = $kirby->roots()->autocss() . DS . $file;
-        $url   = preg_replace(
-            '#^' . $kirby->urls()->index() . '/#', '',
-            $kirby->urls()->autocss() . '/' . $file
-        );
-
-        if ( ! file_exists($root)) {
-            return false;
-        }
+        $url = preg_replace('#^' . $kirby->urls()->index() . '/#', null,
+            $kirby->urls()->autocss() . '/' . $kirby->site()->page()->template() . '.css');
     }
 
-    return html::tag('link', null, array(
-        'rel'   => 'stylesheet',
-        'href'  => url(fingerprint($url)),
-        'media' => $media
-    ));
-}
+    return call($cssHandler, array(fingerprint($url), $media));
+};
 
-function jsfingerprint($src, $async = false)
-{
+$kirby->options['js.handler'] = function($src, $async = false) use($jsHandler, $kirby) {
+
     if (is_array($src)) {
         $js = array();
-        foreach($src as $s) {
-            $js[] = jsfingerprint($s);
-        }
+        foreach($src as $s) $js[] = call($kirby->options['js.handler'], $s);
         return implode(PHP_EOL, $js) . PHP_EOL;
     }
 
     // auto template css files
     if ($src == '@auto') {
-        $kirby = kirby::instance();
-        $file  = $kirby->site()->page()->template() . '.js';
-        $root  = $kirby->roots()->autojs() . DS . $file;
-        $src   = preg_replace(
-            '#^' . $kirby->urls()->index() . '/#', '',
-            $kirby->urls()->autojs() . '/' . $file
-        );
-
-        if ( ! file_exists($root)) {
-            return false;
-        }
+        $src = preg_replace('#^' . $kirby->urls()->index() . '/#', null,
+            $kirby->urls()->autojs() . '/' . $kirby->site()->page()->template() . '.js');
     }
 
-    return html::tag('script', '', array(
-        'src'   => url(fingerprint($src)),
-        'async' => $async
-    ));
-}
+    return call($jsHandler, array(fingerprint($src), $async));
+};
