@@ -7,7 +7,9 @@
  * @author Iksi <info@iksi.cc>
  */
 
-if ( ! c::get('fingerprint')) return;
+if (c::get('fingerprint', false) === false) {
+    return;
+}
 
 $kirby      = kirby::instance();
 $cssHandler = $kirby->option('css.handler');
