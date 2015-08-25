@@ -7,28 +7,9 @@
  * @author Iksi <info@iksi.cc>
  */
 
-namespace iksi;
+if ( ! c::get('fingerprint')) return;
 
-if ( ! \c::get('fingerprint')) return;
-
-function fingerprint($url) {
-
-    $info = pathinfo($url);
-
-    if ( ! file_exists($url) or count($info) < 4) {
-        return $url;
-    }
-
-    $path = $info['filename'] . '.' . md5_file($url) . '.' . $info['extension'];
-
-    if ($info['dirname'] !== '.') {
-        $path = $info['dirname'] . '/' . $path;
-    }
-
-    return $path;
-}
-
-$kirby      = \kirby::instance();
+$kirby      = kirby::instance();
 $cssHandler = $kirby->option('css.handler');
 $jsHandler  = $kirby->option('js.handler');
 
@@ -40,13 +21,25 @@ $kirby->options['css.handler'] = function($url, $media = null) use($cssHandler, 
         return implode(PHP_EOL, $css) . PHP_EOL;
     }
 
-    // auto template css files
-    if ($url == '@auto') {
-        $url = preg_replace('#^' . $kirby->urls()->index() . '/#', null,
-            $kirby->urls()->autocss() . '/' . $kirby->site()->page()->template() . '.css');
+    if ($url === '@auto') {
+        $file = $kirby->site()->page()->template() . '.css';
+        $root = $kirby->roots()->autocss() . DS . $file;
+        $url  = $kirby->urls()->autocss() . '/' . $file;
+
+        if ( ! file_exists($root)) return false;
+
+        $url = preg_replace('#^' . $kirby->urls()->index() . '/#', null, $url);
     }
 
-    return call($cssHandler, array(fingerprint($url), $media));
+    if (file_exists($url)) {
+        $modifier = md5_file($url);
+        $filename = f::name($url) . '.' . $modifier . '.' . f::extension($url);
+        $dirname  = f::dirname($url);
+
+        $url = ($dirname === '.') ? $filename : $dirname . '/' . $filename;
+    }
+
+    return call($cssHandler, array($url, $media));
 };
 
 $kirby->options['js.handler'] = function($src, $async = false) use($jsHandler, $kirby) {
@@ -57,11 +50,23 @@ $kirby->options['js.handler'] = function($src, $async = false) use($jsHandler, $
         return implode(PHP_EOL, $js) . PHP_EOL;
     }
 
-    // auto template css files
-    if ($src == '@auto') {
-        $src = preg_replace('#^' . $kirby->urls()->index() . '/#', null,
-            $kirby->urls()->autojs() . '/' . $kirby->site()->page()->template() . '.js');
+    if ($src === '@auto') {
+        $file = $kirby->site()->page()->template() . '.js';
+        $root = $kirby->roots()->autojs() . DS . $file;
+        $src  = $kirby->urls()->autojs() . '/' . $file;
+
+        if ( ! file_exists($root)) return false;
+
+        $src = preg_replace('#^' . $kirby->urls()->index() . '/#', null, $src);
     }
 
-    return call($jsHandler, array(fingerprint($src), $async));
+    if (file_exists($src)) {
+        $modifier = md5_file($src);
+        $filename = f::name($src) . '.' . $modifier . '.' . f::extension($src);
+        $dirname  = f::dirname($src);
+
+        $src = ($dirname === '.') ? $filename : $dirname . '/' . $filename;
+    }
+
+    return call($jsHandler, array($src, $async));
 };
