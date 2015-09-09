@@ -14,7 +14,7 @@ As the fingerprint on the file changes after the contents of the file have been 
 
 Add it using git: `git submodule add https://github.com/iksi/KirbyFingerprint.git site/plugins/fingerprint` or do it manually by downloading the repository, renaming the folder to `fingerprint` and placing it in `/site/plugins`. You can use the normal Kirby `css()` and `js()` helper functions.
 
-Add the following lines to your htaccess file:
+Add the following lines to your htaccess file (after `RewriteBase`):
 
 ```
 RewriteCond %{REQUEST_FILENAME} !-f
