@@ -7,7 +7,7 @@
  * @author Iksi <info@iksi.cc>
  */
 
-namespace Iksi;
+namespace Iksi\Component;
 
 use c;
 use f;
@@ -17,7 +17,7 @@ if ( ! c::get('fingerprint')) {
     return;
 }
 
-class FingerprintCSS extends \Kirby\Component\CSS {
+class CSS extends \Kirby\Component\CSS {
 
   /**
    * Builds the html link tag for the given css file
@@ -65,7 +65,7 @@ class FingerprintCSS extends \Kirby\Component\CSS {
 
 }
 
-class FingerprintJS extends \Kirby\Component\JS {
+class JS extends \Kirby\Component\JS {
 
   /**
    * Builds the html script tag for the given javascript file
@@ -112,5 +112,5 @@ class FingerprintJS extends \Kirby\Component\JS {
 
 }
 
-$kirby->set('component', 'css', 'Iksi\FingerprintCSS');
-$kirby->set('component', 'js', 'Iksi\FingerprintJS');
+$kirby->set('component', 'css', 'Iksi\Component\CSS');
+$kirby->set('component', 'js', 'Iksi\Component\JS');
