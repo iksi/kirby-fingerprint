@@ -1,6 +1,6 @@
 # Fingerprint
 
-The Fingerprint plugin now works with Kirby 2.1.0. and uses the new css and js handlers so you can use Kirby’s default `css()` and `js()` helper functions.
+The Fingerprint plugin is updated to be compatible with Kirby 2.3.0 and up using the new component architecture.
 
 ## What is it?
 
