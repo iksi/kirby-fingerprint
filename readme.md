@@ -26,7 +26,7 @@ Or for Nginx you can add the following to your virtual host setup:
 ```
 location /assets {
     if (!-e $request_filename) {
-        rewrite ^/(.+)\.([0-9a-z]{32})\.(js|css)$ /$1.$3 break;
+        rewrite "^/(.+)\.([0-9a-z]{32})\.(js|css)$" /$1.$3 break;
     }
 }
 ```
