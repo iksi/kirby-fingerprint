@@ -44,4 +44,5 @@ You can also use Kirby’s `@auto` for autoloading and fingerprinting template s
 External urls won’t be fingerprinted.
 
 ## Author
-Iksi, <https://www.iksi.cc/>
+Iksi
+<http://www.iksi.cc/>
