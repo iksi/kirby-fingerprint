@@ -18,7 +18,7 @@ Add the following lines to your htaccess file (after `RewriteBase`):
 
 ```
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.+)\.([0-9a-z]{32})\.(js|css)$ $1.$3 [L]
+RewriteRule ^(.+)\.([0-9]{10})\.(js|css)$ $1.$3 [L]
 ```
 
 Or for Nginx you can add the following to your virtual host setup:
@@ -26,7 +26,7 @@ Or for Nginx you can add the following to your virtual host setup:
 ```
 location /assets {
     if (!-e $request_filename) {
-        rewrite "^/(.+)\.([0-9a-z]{32})\.(js|css)$" /$1.$3 break;
+        rewrite "^/(.+)\.([0-9]{10})\.(js|css)$" /$1.$3 break;
     }
 }
 ```
