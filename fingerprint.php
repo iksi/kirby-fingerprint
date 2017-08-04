@@ -21,7 +21,7 @@ class CSS extends \Kirby\Component\CSS {
 
   /**
    * Builds the html link tag for the given css file
-   * 
+   *
    * @param string $url
    * @param null|string $media
    * @return string
@@ -47,6 +47,8 @@ class CSS extends \Kirby\Component\CSS {
 
     }
 
+    $url = ltrim($url, '/');
+
     if (file_exists($url)) {
       $modified = filemtime($url);
       $filename = f::name($url) . '.' . $modified . '.' . f::extension($url);
@@ -69,7 +71,7 @@ class JS extends \Kirby\Component\JS {
 
   /**
    * Builds the html script tag for the given javascript file
-   * 
+   *
    * @param string $src
    * @param boolean async
    * @return string
@@ -94,6 +96,8 @@ class JS extends \Kirby\Component\JS {
       $src = preg_replace('#^' . $this->kirby->urls()->index() . '/#', null, $src);
 
     }
+
+    $src = ltrim($src, '/');
 
     if (file_exists($src)) {
       $modified = filemtime($src);
