@@ -26,6 +26,7 @@ class CSS extends \Kirby\Component\CSS {
    * @param null|string $media
    * @return string
    */
+    
   public function tag($url, $media = null) {
 
     if(is_array($url)) {
@@ -64,18 +65,18 @@ class CSS extends \Kirby\Component\CSS {
     ));
 
   }
-
 }
 
 class JS extends \Kirby\Component\JS {
 
   /**
-   * Builds the html script tag for the given javascript file
+   * Builds the html script tag for the given js file
    *
    * @param string $src
    * @param boolean async
    * @return string
    */
+
   public function tag($src, $async = false) {
 
     if(is_array($src)) {
@@ -84,7 +85,7 @@ class JS extends \Kirby\Component\JS {
       return implode(PHP_EOL, $js) . PHP_EOL;
     }
 
-    // auto template css files
+    // auto template js files
     if($src == '@auto') {
 
       $file = $this->kirby->site()->page()->template() . '.js';
@@ -113,7 +114,6 @@ class JS extends \Kirby\Component\JS {
     ));
 
   }
-
 }
 
 $kirby->set('component', 'css', 'Iksi\Component\CSS');
