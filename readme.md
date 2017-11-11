@@ -34,7 +34,7 @@ location /assets {
 Enable fingerprinting by adding the following to you `config.php` file:
 
 ```PHP
-c::set('fingerprint', true);
+c::set('plugin.fingerprint', true);
 ```
 
 You can also use Kirby’s `@auto` for autoloading and fingerprinting template specific assets.
