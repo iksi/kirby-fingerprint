@@ -2,7 +2,7 @@
 
 ## What is it?
 
-The Fingerprint plugin adds fingerprints (when not on localhost) to css and js filenames based on their contents.
+The Fingerprint plugin adds fingerprints to css and js filenames based on their contents.
 
 ## Why use it?
 
@@ -32,6 +32,7 @@ location /assets {
 Enable fingerprinting by adding the following to you `config.php` file:
 
 ```PHP
+c::set('plugin.fingerprint', true);
 c::set('plugin.fingerprint.trim', 20);
 c::set('plugin.fingerprint.algorithm', 'md5');
 ```
