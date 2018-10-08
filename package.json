@@ -1,0 +1,8 @@
+{
+  "name": "kirby-fingerprint",
+  "description": "Fingerprint plugin for Kirby 2",
+  "author": "Jurriaan Topper <jurriaan@iksi.eu>",
+  "version": "1.5.0",
+  "type": "kirby-plugin",
+  "license": "MIT"
+}

@@ -1,6 +1,4 @@
-# Fingerprint
-
-The Fingerprint plugin is updated to be compatible with Kirby 2.3.0 and up using the new component architecture.
+# Fingerprint for Kirby 2
 
 ## What is it?
 
@@ -18,7 +16,7 @@ Add the following lines to your htaccess file (after `RewriteBase`):
 
 ```
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.+)\.([0-9]{10})\.(js|css)$ $1.$3 [L]
+RewriteRule ^(.+)-([0-9a-z]+)\.(js|css)$ $1.$3 [L]
 ```
 
 Or for Nginx you can add the following to your virtual host setup:
@@ -26,7 +24,7 @@ Or for Nginx you can add the following to your virtual host setup:
 ```
 location /assets {
     if (!-e $request_filename) {
-        rewrite "^/(.+)\.([0-9]{10})\.(js|css)$" /$1.$3 break;
+        rewrite "^/(.+)-([0-9a-z]+)\.(js|css)$" /$1.$3 break;
     }
 }
 ```
@@ -35,6 +33,8 @@ Enable fingerprinting by adding the following to you `config.php` file:
 
 ```PHP
 c::set('plugin.fingerprint', true);
+c::set('plugin.fingerprint.trim', 20);
+c::set('plugin.fingerprint.algorithm', 'md5');
 ```
 
 You can also use Kirby’s `@auto` for autoloading and fingerprinting template specific assets.
@@ -44,4 +44,5 @@ You can also use Kirby’s `@auto` for autoloading and fingerprinting template s
 External urls won’t be fingerprinted.
 
 ## Author
-Iksi, <http://www.iksi.cc/>
+
+Jurriaan Topper <jurriaan@iksi.eu> (http://www.iksi.eu/)
