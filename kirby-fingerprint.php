@@ -10,8 +10,8 @@
 
 if (c::get('plugin.fingerprint', false) === true) {
   load([
-    'iksi\\component\\css' => __DIR__ . DS . 'src' . DS . 'css.php',
-    'iksi\\component\\js' => __DIR__ . DS . 'src' . DS . 'js.php'
+    'iksi\\component\\css' => __DIR__ . '/src/css.php',
+    'iksi\\component\\js' => __DIR__ . '/src/js.php'
   ]);
 
   $kirby->set('component', 'css', 'Iksi\\Component\\CSS');
